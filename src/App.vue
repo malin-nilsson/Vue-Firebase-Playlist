@@ -1,11 +1,20 @@
+<script lang="ts">
+import Navbar from "./components/Navbar.vue";
+
+export default {
+  components: { Navbar },
+};
+</script>
+
 <template>
-  <div id="app">
+  <Navbar />
+  <div id="content">
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
+#content {
   margin: 0 auto;
   max-width: 1200px;
   padding: 0 20px;

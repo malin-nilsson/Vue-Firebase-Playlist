@@ -6,7 +6,7 @@ import Signup from '../views/auth/Signup.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home,
   },
   {
