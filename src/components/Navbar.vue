@@ -1,4 +1,17 @@
 <script lang="ts" setup>
+import useLogout from "../composables/useLogout";
+import { useRouter } from "vue-router";
+
+const { logout, error } = useLogout();
+const router = useRouter();
+
+const handleLogout = async () => {
+  await logout();
+  if (!error.value) {
+    console.log("user logged out");
+    router.push({ name: "Login" });
+  }
+};
 </script>
 
 <template>
@@ -6,7 +19,7 @@
     <nav>
       <h1><router-link :to="{ name: 'Home' }">Vue Playlist</router-link></h1>
       <div class="links">
-        <button>Logout</button>
+        <button @click="handleLogout">Logout</button>
         <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
         <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
       </div>
