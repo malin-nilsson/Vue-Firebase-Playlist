@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import useLogout from "../composables/useLogout";
+import getUser from "../composables/getUser";
 import { useRouter } from "vue-router";
 
 const { logout, error } = useLogout();
+const { user } = getUser();
 const router = useRouter();
 
 const handleLogout = async () => {
@@ -19,9 +21,13 @@ const handleLogout = async () => {
     <nav>
       <h1><router-link :to="{ name: 'Home' }">Vue Playlist</router-link></h1>
       <div class="links">
-        <button @click="handleLogout">Logout</button>
-        <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
-        <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
+        <div v-if="user">
+          <button @click="handleLogout">Logout</button>
+        </div>
+        <div v-else>
+          <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
+          <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
