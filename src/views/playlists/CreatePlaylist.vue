@@ -3,9 +3,29 @@ import { ref } from "vue";
 
 const title = ref("");
 const description = ref("");
+const file = ref(<File | null>null);
+const fileError = ref("");
 
 const handleSubmit = () => {
-  console.log(title.value, description.value);
+  if (file.value) {
+    console.log(title.value, description.value, file.value);
+  }
+};
+
+// allowed file types
+const types = ["image/png", "image/jpeg"];
+
+const handleChange = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const selected = (target.files as FileList)[0];
+
+  if (selected && types.includes(selected.type)) {
+    file.value = selected;
+    fileError.value = "";
+  } else {
+    file.value = null;
+    fileError.value = "Please select an image file (png or jpg).";
+  }
 };
 </script>
 
@@ -20,8 +40,8 @@ const handleSubmit = () => {
     ></textarea>
     <!-- upload playlist image -->
     <label>Upload playlist cover image</label>
-    <input type="file" />
-    <div class="error"></div>
+    <input @change="handleChange" type="file" />
+    <div class="error">{{ fileError }}</div>
     <button>Create</button>
   </form>
 </template>
