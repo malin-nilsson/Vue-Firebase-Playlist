@@ -24,7 +24,7 @@ const handleLogout = async () => {
         <div v-if="user">
           <button @click="handleLogout">Logout</button>
         </div>
-        <div v-else>
+        <div v-else class="links">
           <router-link class="btn" :to="{ name: 'Signup' }">Signup</router-link>
           <router-link class="btn" :to="{ name: 'Login' }">Login</router-link>
         </div>
