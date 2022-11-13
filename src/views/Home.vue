@@ -1,15 +1,20 @@
-<script lang="ts" setup>
-import getCollection from "@/composables/getCollection";
+<script lang="ts">
+import ListView from "../components/ListView.vue";
+import getCollection from "../composables/getCollection";
 
-const { error, documents } = getCollection("playlists");
+export default {
+  name: "Home",
+  components: { ListView },
+  setup() {
+    const { error, documents } = getCollection("playlists");
+    return { error, documents };
+  },
+};
 </script>
 
 <template>
-  <div class="home">Homepage</div>
   <div v-if="error" class="error">Could not find any playlists.</div>
   <div v-if="documents">
-    <div v-for="doc in documents" :key="doc.id">
-      <p>{{ doc.title }}</p>
-    </div>
+    <ListView :playlists="documents" />
   </div>
 </template>
