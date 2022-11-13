@@ -1,19 +1,31 @@
-<script lang="ts" setup>
+<script lang="ts">
 import useLogout from "../composables/useLogout";
 import getUser from "../composables/getUser";
 import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
 
-const { logout, error } = useLogout();
-const { user } = getUser();
-const router = useRouter();
+export default defineComponent({
+  setup() {
+    const { logout, error } = useLogout();
+    const { user } = getUser();
+    const router = useRouter();
 
-const handleLogout = async () => {
-  await logout();
-  if (!error.value) {
-    console.log("user logged out");
-    router.push({ name: "Login" });
-  }
-};
+    const handleLogout = async () => {
+      await logout();
+      if (!error.value) {
+        console.log("user logged out");
+        router.push({ name: "Login" });
+      }
+    };
+
+    return {
+      handleLogout,
+      user,
+      logout,
+      error,
+    };
+  },
+});
 </script>
 
 <template>
@@ -22,6 +34,9 @@ const handleLogout = async () => {
       <h1><router-link :to="{ name: 'Home' }">Vue Playlist</router-link></h1>
       <div class="links">
         <div v-if="user">
+          <router-link :to="{ name: 'CreatePlaylist' }"
+            >Create playlist</router-link
+          >
           <button @click="handleLogout">Logout</button>
         </div>
         <div v-else class="links">
