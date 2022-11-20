@@ -45,8 +45,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/playlists/:id',
     name: 'PlaylistDetails',
     component: PlaylistDetails,
-    beforeEnter: requireAuth,
     props: true,
+    beforeEnter: requireAuth,
   },
 ]
 
