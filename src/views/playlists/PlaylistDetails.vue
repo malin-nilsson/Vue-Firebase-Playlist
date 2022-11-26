@@ -1,4 +1,5 @@
 <script lang="ts">
+import useDocument from "@/composables/useDocument";
 import getDocument from "@/composables/getDocument";
 import { computed, PropType } from "vue";
 import getUser from "@/composables/getUser";
@@ -14,6 +15,7 @@ export default {
   setup(props: any) {
     const { error, document: playlist } = getDocument("playlists", props.id);
     const { user } = getUser();
+    const { deleteDoc } = useDocument("playlists", props.id);
 
     const ownership = computed(() => {
       return (
@@ -21,7 +23,11 @@ export default {
       );
     });
 
-    return { error, playlist, ownership };
+    const handleDelete = async () => {
+      await deleteDoc();
+    };
+
+    return { error, playlist, ownership, handleDelete };
   },
 };
 </script>
@@ -37,7 +43,7 @@ export default {
       <h2>{{ playlist.title }}</h2>
       <p class="username">Created by {{ playlist.userName }}</p>
       <p class="description">{{ playlist.description }}</p>
-      <button v-if="ownership">Delete playlist</button>
+      <button v-if="ownership" @click="handleDelete">Delete playlist</button>
     </div>
 
     <!-- Song list -->
