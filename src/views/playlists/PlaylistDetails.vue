@@ -1,7 +1,9 @@
 <script lang="ts">
+import useStorage from "@/composables/useStorage";
 import useDocument from "@/composables/useDocument";
 import getDocument from "@/composables/getDocument";
 import { computed, PropType } from "vue";
+import { useRouter } from "vue-router";
 import getUser from "@/composables/getUser";
 
 export default {
@@ -16,6 +18,8 @@ export default {
     const { error, document: playlist } = getDocument("playlists", props.id);
     const { user } = getUser();
     const { deleteDoc } = useDocument("playlists", props.id);
+    const { deleteImage } = useStorage();
+    const router = useRouter();
 
     const ownership = computed(() => {
       return (
@@ -24,7 +28,9 @@ export default {
     });
 
     const handleDelete = async () => {
+      await deleteImage(playlist.value.filePath);
       await deleteDoc();
+      router.push({ name: "Home" });
     };
 
     return { error, playlist, ownership, handleDelete };
