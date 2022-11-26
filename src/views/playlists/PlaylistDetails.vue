@@ -1,12 +1,27 @@
 <script lang="ts">
 import getDocument from "@/composables/getDocument";
+import { computed, PropType } from "vue";
+import getUser from "@/composables/getUser";
 
 export default {
-  props: ["id"],
+  props: {
+    id: {
+      type: String as PropType<string>,
+      required: true,
+    },
+  },
+
   setup(props: any) {
     const { error, document: playlist } = getDocument("playlists", props.id);
+    const { user } = getUser();
 
-    return { error, playlist };
+    const ownership = computed(() => {
+      return (
+        playlist.value && user.value && user.value.uid == playlist.value.userId
+      );
+    });
+
+    return { error, playlist, ownership };
   },
 };
 </script>
@@ -22,6 +37,7 @@ export default {
       <h2>{{ playlist.title }}</h2>
       <p class="username">Created by {{ playlist.userName }}</p>
       <p class="description">{{ playlist.description }}</p>
+      <button v-if="ownership">Delete playlist</button>
     </div>
 
     <!-- Song list -->
