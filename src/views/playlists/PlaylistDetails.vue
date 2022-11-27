@@ -5,6 +5,7 @@ import getDocument from "@/composables/getDocument";
 import { computed, PropType } from "vue";
 import { useRouter } from "vue-router";
 import getUser from "@/composables/getUser";
+import AddSong from "@/components/AddSong.vue";
 
 const props = defineProps({
   id: String,
@@ -45,7 +46,7 @@ const handleDelete = async () => {
 
     <!-- Song list -->
     <div class="song-list">
-      <p>song list here</p>
+      <AddSong v-if="ownership" :playlist="playlist" />
     </div>
   </div>
 </template>
