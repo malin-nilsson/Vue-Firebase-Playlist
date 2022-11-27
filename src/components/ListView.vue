@@ -1,25 +1,37 @@
 <script lang="ts">
+import { IPlaylist } from "@/models/IPlaylist";
+
 export default {
   props: ["playlists"],
+
+  setup() {},
 };
+
+// const props = defineProps({
+//   list: Array as PropType<IPlaylist[]>,
+// });
 </script>
 
 <template>
-  <div v-for="playlist in playlists" :key="playlist.id">
-    <router-link :to="{ name: 'PlaylistDetails', params: { id: playlist.id } }">
-      <div class="single">
-        <div class="thumbnail">
-          <img :src="playlist.coverUrl" />
+  <div>
+    <div v-for="playlist in playlists" :key="playlist.id">
+      <router-link
+        :to="{ name: 'PlaylistDetails', params: { id: playlist.id } }"
+      >
+        <div class="single">
+          <div class="thumbnail">
+            <img :src="playlist.coverUrl" />
+          </div>
+          <div class="info">
+            <h3>{{ playlist.title }} - {{ playlist.id }}</h3>
+            <p>Created by {{ playlist.userName }}</p>
+          </div>
+          <div class="song-num">
+            <p>{{ playlist.songs?.length }} songs</p>
+          </div>
         </div>
-        <div class="info">
-          <h3>{{ playlist.title }}</h3>
-          <p>Created by {{ playlist.userName }}</p>
-        </div>
-        <div class="song-num">
-          <p>{{ playlist.songs.length }}</p>
-        </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -52,7 +64,7 @@ img {
 .info {
   margin: 0 30px;
 }
-.song-number {
+.song-num {
   margin-left: auto;
 }
 </style>

@@ -1,4 +1,5 @@
-export interface IPlaylist {
+interface IPlaylist {
+  id: string
   coverUrl?: string
   createdAt?: any
   description?: string

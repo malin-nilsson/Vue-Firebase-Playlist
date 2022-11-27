@@ -31,11 +31,16 @@ export default defineComponent({
 <template>
   <div class="navbar">
     <nav>
-      <h1><router-link :to="{ name: 'Home' }">Vue Playlist</router-link></h1>
+      <div class="logo">
+        <img src="@/assets/logo.png" />
+        <h1><router-link :to="{ name: 'Home' }">Playlistr</router-link></h1>
+      </div>
       <div class="links">
-        <div v-if="user">
+        <div v-if="user" class="logged-in-links">
+          <h2>Hey, {{ user.displayName }}</h2>
+          <router-link :to="{ name: 'Home' }">All playlists</router-link>
           <router-link :to="{ name: 'CreatePlaylist' }"
-            >Create playlist</router-link
+            >Add new playlist</router-link
           >
           <button @click="handleLogout">Logout</button>
         </div>
@@ -58,22 +63,48 @@ export default defineComponent({
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    max-height: 35px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    padding: 10px;
+  }
 
   h1 a {
     margin-left: 20px;
     font-size: 1.5rem;
+    text-transform: uppercase;
   }
 
   .links {
-    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+
+    .logged-in-links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+
+      h2 {
+        display: inline;
+      }
+    }
   }
 
   .links a,
   button {
     margin-left: 16px;
-    font-size: 14px;
+    font-size: 1rem;
   }
 }
 </style>
