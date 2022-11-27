@@ -1,4 +1,4 @@
-<script lang="ts">
+<script lang="ts" setup>
 import useStorage from "@/composables/useStorage";
 import useDocument from "@/composables/useDocument";
 import getDocument from "@/composables/getDocument";
@@ -6,35 +6,26 @@ import { computed, PropType } from "vue";
 import { useRouter } from "vue-router";
 import getUser from "@/composables/getUser";
 
-export default {
-  props: {
-    id: {
-      type: String as PropType<string>,
-      required: true,
-    },
-  },
+const props = defineProps({
+  id: String,
+});
 
-  setup(props: any) {
-    const { error, document: playlist } = getDocument("playlists", props.id);
-    const { user } = getUser();
-    const { deleteDoc } = useDocument("playlists", props.id);
-    const { deleteImage } = useStorage();
-    const router = useRouter();
+const { error, document: playlist } = getDocument("playlists", props.id);
+const { user } = getUser();
+const { deleteDoc } = useDocument("playlists", props.id);
+const { deleteImage } = useStorage();
+const router = useRouter();
 
-    const ownership = computed(() => {
-      return (
-        playlist.value && user.value && user.value.uid == playlist.value.userId
-      );
-    });
+const ownership = computed(() => {
+  return (
+    playlist.value && user.value && user.value.uid == playlist.value.userId
+  );
+});
 
-    const handleDelete = async () => {
-      await deleteImage(playlist.value.filePath);
-      await deleteDoc();
-      router.push({ name: "Home" });
-    };
-
-    return { error, playlist, ownership, handleDelete };
-  },
+const handleDelete = async () => {
+  await deleteImage(playlist.value.filePath);
+  await deleteDoc();
+  router.push({ name: "Home" });
 };
 </script>
 

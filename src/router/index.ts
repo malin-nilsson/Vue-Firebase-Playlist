@@ -1,14 +1,25 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/auth/Login.vue'
 import Signup from '../views/auth/Signup.vue'
 import CreatePlaylist from '../views/playlists/CreatePlaylist.vue'
 import PlaylistDetails from '../views/playlists/PlaylistDetails.vue'
+import {
+  createRouter,
+  createWebHistory,
+  NavigationGuardNext,
+  RouteLocation,
+  RouteLocationNormalized,
+  RouteRecordRaw,
+} from 'vue-router'
 
 // route guard
 import { projectAuth } from '../firebase/config'
 
-const requireAuth = (to: any, from: any, next: any) => {
+const requireAuth = (
+  to: RouteLocationNormalized,
+  from: RouteLocation,
+  next: NavigationGuardNext,
+) => {
   let user = projectAuth.currentUser
 
   if (!user) {

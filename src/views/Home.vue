@@ -1,15 +1,8 @@
-<script lang="ts">
-import ListView from "../components/ListView.vue";
-import getCollection from "../composables/getCollection";
+<script lang="ts" setup>
+import ListView from "@/components/ListView.vue";
+import getCollection from "@/composables/getCollection";
 
-export default {
-  name: "Home",
-  components: { ListView },
-  setup() {
-    const { error, documents } = getCollection("playlists");
-    return { error, documents };
-  },
-};
+const { error, documents } = getCollection("playlists");
 </script>
 
 <template>
