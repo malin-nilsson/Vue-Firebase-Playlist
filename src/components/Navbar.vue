@@ -44,6 +44,7 @@ export default defineComponent({
           <router-link :to="{ name: 'CreatePlaylist' }"
             >Create playlist</router-link
           >
+          <span>Hi there, {{ user.displayName }}</span>
           <button @click="handleLogout">Logout</button>
         </div>
         <div v-else class="links">
@@ -103,10 +104,24 @@ nav {
     }
   }
 
-  .links a,
-  button {
-    margin-left: 16px;
-    font-size: 1rem;
+  .links {
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    button {
+      margin-left: 16px;
+      font-size: 1rem;
+    }
+
+    span {
+      font-size: 1rem;
+      display: inline-block;
+      padding-left: 1rem;
+      border-left: 1px solid #eee;
+      font-weight: 600;
+    }
   }
 }
 </style>

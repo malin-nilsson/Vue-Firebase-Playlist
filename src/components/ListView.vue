@@ -6,10 +6,6 @@ export default {
 
   setup() {},
 };
-
-// const props = defineProps({
-//   list: Array as PropType<IPlaylist[]>,
-// });
 </script>
 
 <template>
