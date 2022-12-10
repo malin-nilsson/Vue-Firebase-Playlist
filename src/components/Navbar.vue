@@ -37,7 +37,9 @@ export default defineComponent({
       </div>
       <div class="links">
         <div v-if="user" class="logged-in-links">
-          <h2>Hey, {{ user.displayName }}</h2>
+          <router-link :to="{ name: 'UserPlaylists' }"
+            >My playlists</router-link
+          >
           <router-link :to="{ name: 'Home' }">All playlists</router-link>
           <router-link :to="{ name: 'CreatePlaylist' }"
             >Add new playlist</router-link
@@ -93,7 +95,7 @@ nav {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
 
       h2 {
         display: inline;
