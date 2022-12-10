@@ -5,7 +5,7 @@ import useDocument from "@/composables/useDocument";
 export default {
   props: ["playlist"],
 
-  setup(props) {
+  setup(props: any) {
     const title = ref("");
     const artist = ref("");
     const showForm = ref(false);
