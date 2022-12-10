@@ -42,7 +42,7 @@ export default defineComponent({
           >
           <router-link :to="{ name: 'Home' }">All playlists</router-link>
           <router-link :to="{ name: 'CreatePlaylist' }"
-            >Add new playlist</router-link
+            >Create playlist</router-link
           >
           <button @click="handleLogout">Logout</button>
         </div>
