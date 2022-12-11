@@ -1,4 +1,4 @@
-# Playlist Creator
+# Playlist Creator 🎶✨
 
 A playlist manager using Vue3 with TypeScript on the frontend and Firebase on the backend for database, authentication, authorization.
 
@@ -14,7 +14,7 @@ Live site url: https://vue-playlist-6ef86.web.app
 `npm install`
 
 3. Replace API key\
-To run this application you'll you need a Firebase API key. It can be created at https://firebase.google.com/ and replaced in the src/firebase/config.js file.:\
+To run this application you'll you need a Firebase API key. It can be created at https://firebase.google.com/ and replaced in the src/firebase/config.js file:\
 VUE_APP_APIKEY=”your Firebase API key”
 
 4. Run Vue\
