@@ -64,7 +64,7 @@ const handleChange = (e: Event) => {
       v-model="description"
     ></textarea>
     <!-- upload playlist image -->
-    <label>Upload playlist cover image</label>
+    <label>Upload playlist cover image below:</label>
     <input @change="handleChange" type="file" />
     <div class="error">{{ fileError }}</div>
     <button v-if="!isPending">Create</button>

@@ -25,11 +25,31 @@ export default {
     <div v-if="playlists">
       <ListView :playlists="playlists" />
     </div>
-    <router-link to="{ name: 'CreatePlaylist' }" class="btn"
+    <div class="empty-playlist" v-if="playlists.length <= 0">
+      You don't have any playlists yet...
+    </div>
+
+    <router-link :to="{ name: 'CreatePlaylist' }" class="btn"
       >Create a new playlist</router-link
     >
   </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
+@import "@/styles/mixins";
+
+.user-playlists {
+  padding: 1rem;
+  @include tablet-and-up {
+    padding: 2rem;
+  }
+}
+
+.empty-playlist {
+  margin: 0 0 1rem;
+}
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
 </style>

@@ -3,8 +3,9 @@
 
 /* variables */
 :root {
-  --primary: #4f515a;
-  --secondary: #ebebeb;
+  --dk-grey: #3a363d;
+  --lt-grey: #ebebeb;
+  --purple: #d6c5f1;
   --warning: #da0f41;
 }
 
@@ -26,7 +27,8 @@ a {
 /* buttons */
 button,
 .btn {
-  background: var(--secondary);
+  background: var(--purple);
+  color: var(--dk-grey);
   border-radius: 8px;
   border: 0;
   padding: 8px 12px;
@@ -36,13 +38,12 @@ button,
 }
 button:hover,
 .btn:hover {
-  background: var(--primary);
-  color: white;
+  background: #dccdf3;
 }
 button:disabled {
   opacity: 0.5;
-  color: var(--primary);
-  background: var(--secondary);
+  color: var(--dk-grey);
+  background: var(--lt-grey);
   cursor: not-allowed;
 }
 
@@ -53,13 +54,13 @@ form {
   padding: 30px;
   border-radius: 8px;
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--lt-grey);
   background: white;
 }
 input,
 textarea {
   border: 0;
-  border-bottom: 1px solid var(--secondary);
+  border-bottom: 1px solid var(--lt-grey);
   padding: 10px;
   outline: none;
   display: block;

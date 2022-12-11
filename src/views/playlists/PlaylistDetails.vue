@@ -67,10 +67,21 @@ const handleClick = async (id: string) => {
 </template>
 
 <style lang="scss">
+@import "@/styles/mixins";
+
 .playlist-details {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   gap: 80px;
+  padding: 0 1rem 2rem;
+
+  @include tablet-and-up {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  @include desktop-and-up {
+    padding: 0 2rem 2rem;
+  }
 }
 .cover {
   overflow: hidden;
@@ -85,8 +96,8 @@ const handleClick = async (id: string) => {
   left: 0;
   min-width: 100%;
   min-height: 100%;
-  max-width: 200%;
-  max-height: 200%;
+  max-width: 150%;
+  max-height: 150%;
 }
 .playlist-info {
   text-align: center;
@@ -110,7 +121,7 @@ const handleClick = async (id: string) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px dashed var(--secondary);
+  border-bottom: 1px dashed var(--lt-grey);
   margin-bottom: 20px;
 }
 </style>

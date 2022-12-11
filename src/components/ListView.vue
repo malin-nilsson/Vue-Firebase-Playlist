@@ -19,7 +19,7 @@ export default {
             <img :src="playlist.coverUrl" />
           </div>
           <div class="info">
-            <h3>{{ playlist.title }} - {{ playlist.id }}</h3>
+            <h3>{{ playlist.title }}</h3>
             <p>Created by {{ playlist.userName }}</p>
           </div>
           <div class="song-num">
@@ -32,14 +32,27 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins";
 .single {
   display: flex;
-  align-items: center;
-  padding: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.2rem;
   border-radius: 10px;
-  background: white;
-  margin: 16px 0;
+  background: #fff;
+  margin: 0 0 1rem;
   transition: all ease 0.2s;
+
+  @include tablet-and-up {
+    flex-direction: row;
+    align-items: center;
+    gap: unset;
+  }
+
+  @include desktop-and-up {
+    margin: 1rem;
+  }
 }
 .single:hover {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
@@ -58,9 +71,13 @@ img {
   display: block;
 }
 .info {
-  margin: 0 30px;
+  @include tablet-and-up {
+    margin: 0 30px;
+  }
 }
 .song-num {
-  margin-left: auto;
+  @include tablet-and-up {
+    margin-left: auto;
+  }
 }
 </style>
