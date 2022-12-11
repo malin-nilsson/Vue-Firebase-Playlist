@@ -51,12 +51,12 @@ export default {
   }
 
   @include desktop-and-up {
-    margin: 1rem;
+    margin: 1rem 0;
   }
 }
 .single:hover {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.05);
-  transform: scale(1.02);
+  background: var(--lt-grey);
   transition: all ease 0.2s;
 }
 .thumbnail {
