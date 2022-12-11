@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyANP5AfrrMRQ9Z3K3BO3H6_hvrPXnMpHy0',
+  apiKey: process.env.VUE_APP_APIKEY,
   authDomain: 'vue-playlist-6ef86.firebaseapp.com',
   projectId: 'vue-playlist-6ef86',
   storageBucket: 'vue-playlist-6ef86.appspot.com',
